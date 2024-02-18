@@ -3,14 +3,10 @@
    
     <v-container>
         <div class="pX-10  mx-auto">
-         <div class="h-25">
-            <h1 >LISTA DE USUÁRIOS - S3I </h1>
-            <v-btn class="my-6" prepend-icon="mdi-plus" color="#4CAF50">Adicionar</v-btn>
-         </div>
-          <hr>
+         <modal />
         <div class="mx-auto my-2">
            
-            <v-card elevation="12 " class="my-4 px-2 py-6">
+            <v-card elevation="4" class="my-2 px-2 py-2 rounded-lg" >
                 <v-card-item>
 
               
@@ -18,7 +14,7 @@
            
             <v-table
                 fixed-header
-                height="350px"
+                height="350"
              
             >
                 <thead >
@@ -42,12 +38,16 @@
                     v-for="item in desserts"
                     :key="item.name"
                 >
-                    <td colspan="1" class="text-center ">{{ item.name }}</td>
+                    <td colspan="1" class="text-center ">{{ item.id}}</td>
                     <td colspan="6" class="text-center ">{{ item.calories }}</td>
                     <td colspan="6" class="text-center "> {{ item.caloriess }}</td>
-                    <td colspan="3" class="text-right"> 
-                        <v-btn class="mr-4" color="#1A237E">Editar</v-btn>
-                        <v-btn color="#B71C1C">Deletar</v-btn>
+                    <td colspan="3"> 
+                        <div class="d-flex justify-end">
+
+                           <update :IdUser="item.id" />
+                        
+                           <delete :IdUser="item.id"/>
+                        </div>
                     </td>
                 </tr>
                 </tbody>
@@ -61,7 +61,11 @@
 </template>
 
 <script>
+import Delete from '~/components/Delete.vue'
+import modal from '~/components/modal.vue'
+import Update from '~/components/Update.vue'
   export default {
+  components: { modal, Update, Delete },
     data () {
       return {
         desserts: [
@@ -69,91 +73,109 @@
             name: '1',
             calories: 'yanick Manuel Eduardo dos Santos',
              caloriess: 'yanickteste@teste.com',
+             id: 1
           },
            {
             name: '1',
             calories: 'yanick Manuel Eduardo dos Santos',
              caloriess: 'yanickteste@teste.com',
+             id: 2
           },
            {
             name: '1',
             calories: 'yanick Manuel Eduardo dos Santos',
              caloriess: 'yanickteste@teste.com',
+             id: 3
           },
            {
             name: '1',
             calories: 'yanick Manuel Eduardo dos Santos',
              caloriess: 'yanickteste@teste.com',
+             id: 4
           },
            {
             name: '1',
             calories: 'yanick Manuel Eduardo dos Santos',
              caloriess: 'yanickteste@teste.com',
+             id: 5
           },
            {
             name: '1',
             calories: 'yanick Manuel Eduardo dos Santos',
              caloriess: 'yanickteste@teste.com',
+             id: 6
           },
            {
             name: '1',
             calories: 'yanick Manuel Eduardo dos Santos',
              caloriess: 'yanickteste@teste.com',
+             id: 7
           },
            {
             name: '1',
             calories: 'yanick Manuel Eduardo dos Santos',
              caloriess: 'yanickteste@teste.com',
+             id: 8
           },
            {
             name: '1',
             calories: 'yanick Manuel Eduardo dos Santos',
              caloriess: 'yanickteste@teste.com',
+             id: 9
           },
            {
             name: '1',
             calories: 'yanick Manuel Eduardo dos Santos',
              caloriess: 'yanickteste@teste.com',
+             id: 10
           },
            {
             name: '1',
             calories: 'yanick Manuel Eduardo dos Santos',
              caloriess: 'yanickteste@teste.com',
+             id: 11
           },
            {
             name: '1',
             calories: 'yanick Manuel Eduardo dos Santos',
              caloriess: 'yanickteste@teste.com',
+             id: 12
           },
            {
             name: '1',
             calories: 'yanick Manuel Eduardo dos Santos',
              caloriess: 'yanickteste@teste.com',
+             id: 13
           },
            {
             name: '1',
             calories: 'yanick Manuel Eduardo dos Santos',
              caloriess: 'yanickteste@teste.com',
+             id: 14
           },
            {
             name: '1',
             calories: 'yanick Manuel Eduardo dos Santos',
              caloriess: 'yanickteste@teste.com',
+             id: 15
           },
            {
             name: '1',
             calories: 'yanick Manuel Eduardo dos Santos',
              caloriess: 'yanickteste@teste.com',
+             id: 16
           },
            {
             name: '1',
             calories: 'yanick Manuel Eduardo dos Santos',
              caloriess: 'yanickteste@teste.com',
+             id: 17
           },
            {
             name: '1',
             calories: 'yanick Manuel Eduardo dos Santos',
              caloriess: 'yanickteste@teste.com',
+             id: 18
           },
           
        
