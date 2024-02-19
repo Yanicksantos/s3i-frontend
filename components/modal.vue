@@ -109,25 +109,38 @@ export default {
   }),
 
   methods: {
-    onSubmit() {
+   async onSubmit() {
       if (!this.form || !this.validateForm()) return;
 
       this.loading = true;
 
-      setTimeout(() => {
-        this.loading = false;
-        this.dialog = false;
         
-        if (this.loading == false){
-             alert("Usuario Adicionado com sucesso!");
-        }
-       
 
-            this.nome ='',
-            this.email ='',
-            this.selectedDate = '',
-            this.cargo =''
-        }, 2000);
+
+    const userapi = {
+      username: this.nome,
+      email: this.email
+    };
+
+    const { data, pending } = await useFetch('https://localhost:7021/usuario', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify(userapi),
+      lazy: true,
+      server: false,
+    });
+
+    this.nome ='',
+    this.email ='',
+    this.selectedDate = '',
+    this.cargo =''
+    this.loading = false;
+  
+      this.dialog = false;
+          alert("Usuario Adicionado com sucesso!");
+
       
     },
 

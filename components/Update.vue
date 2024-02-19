@@ -114,13 +114,18 @@ export default {
     const nome = ref('');
     const cargo = ref('');
     const validEmail = ref(true);
+    const id = ref (null)
 
     const teste = async () => {
+        id.value = props.IdUser
         email.value =  props.Useremail;
         nome.value = props.Username;
         cargo.value = 'California';
         selectedDate.value = '18/02/2024';
         dialog.value = true;
+
+
+       
 
 
         /*
@@ -151,24 +156,39 @@ export default {
       
     };
 
-    const onSubmit = () => {
+    const onSubmit = async () => {
       if (!form.value || !validateForm()) return;
 
       loading.value = true;
+    const userapi = {
+        Id: id.value,
+      username: nome.value,
+      email: email.value
+    };
 
-      setTimeout(() => {
-        loading.value = false;
-        dialog.value = false;
+       await useFetch(`https://localhost:7021/editar`, {
+        method: 'PUT', 
+        headers: {
+          'content-type': 'application/json',
+        },
+        body: JSON.stringify(userapi),
+        lazy: true,
+        server: false,
+      });
 
-        alert(
-          `Nome: ${nome.value}\nE-mail: ${email.value}\nCargo: ${cargo.value}\nAniversário: ${selectedDate.value}`
-        );
+      loading.value = false;
+      dialog.value = false;
+
 
         nome.value = '';
         email.value = '';
         selectedDate.value = '';
         cargo.value = '';
-      }, 2000);
+
+        alert("usuario atualizado com sucesso!")
+
+
+     
     };
 
     const required = (v) => !!v || '';

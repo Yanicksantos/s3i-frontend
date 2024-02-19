@@ -72,14 +72,21 @@ export default {
 
     },
 
-    Submit() {
+    async Submit() {
       this.loading = true;
 
-      setTimeout(() => {
-        this.loading = false;
-        this.dialog = false;
-        
-      }, 2000);
+      await useFetch(`https://localhost:7021/delete?id=${this.IdUser}`, {
+        method: 'DELETE',
+        headers: {
+          'content-type': 'application/json',
+        },
+        lazy: true,
+        server: false,
+      });
+
+      this.loading = false;
+      this.dialog = false;
+      alert("Usuario exluído com sucesso!");
     },
     
  
