@@ -8,8 +8,13 @@
           <v-card-title>
             <h4 class="text-h5 mb-8">Editar</h4>
           </v-card-title>
-
-          <v-card-text>
+               <v-card-item v-if="pending">
+                     <v-progress-linear indeterminate 
+                       absolute
+                     bottom
+                     ></v-progress-linear>
+                 </v-card-item>
+          <v-card-text v-else>
             <v-form v-model="form" @submit.prevent="onSubmit">
               <v-text-field
                 v-model="nome"
@@ -81,73 +86,119 @@
         
     </div>
 </template>
-
 <script>
+import { ref } from 'vue';
+
 export default {
- props: {
+  props: {
     IdUser: {
-      type: Number, 
+      type: Number,
+      required: true,
+    },
+    Username: {
+      type: String,
+      required: true,
+    },
+    Useremail: {
+      type: String,
       required: true,
     },
   },
-  data: () => ({
-    dialog: false,
-    form: false,
-    email: null,
-    password: null,
-    loading: false,
-    selectedDate: '',
-    nome: '',
-    cargo: '',
-    validEmail: true,
-  }),
+  setup(props) {
+    const dialog = ref(false);
+    const form = ref(false);
+    const email = ref(null);
+    const password = ref(null);
+    const loading = ref(false);
+    const selectedDate = ref('');
+    const nome = ref('');
+    const cargo = ref('');
+    const validEmail = ref(true);
 
-  methods: {
-    teste() {
-         this.nome =` teste de ${this.IdUser}` ;
-        this.dialog = true;
-       
+    const teste = async () => {
+        email.value =  props.Useremail;
+        nome.value = props.Username;
+        cargo.value = 'California';
+        selectedDate.value = '18/02/2024';
+        dialog.value = true;
 
 
-    },
-    onSubmit() {
-      if (!this.form || !this.validateForm()) return;
+        /*
+        dialog.value = true;
+      // Assuming `useFetch` is a function or composition API related to fetching data
+      const requi = await useAsyncData('users', () => $fetch(`https://localhost:7021/usuario/${props.IdUser}`))
 
-      this.loading = true;
+      /*const { data: users, pending, refresh } = await useFetch(`https://localhost:7021/usuario/${props.IdUser}`, {
+        method: 'GET',
+        headers: {
+          'content-type': 'application/json',
+        },
+        lazy: true,
+        server: false,
+      });
+
+      const { payload } = useNuxtApp();
+
+
+    if(!payload.pending){
+     
+        nome.value = payload.data["users"].username;
+        email.value = payload.data["users"].email;
+        cargo.value = 'California';
+        selectedDate.value = Date.now();
+    }*/
+
+      
+    };
+
+    const onSubmit = () => {
+      if (!form.value || !validateForm()) return;
+
+      loading.value = true;
 
       setTimeout(() => {
-        this.loading = false;
-        this.dialog = false;
-        
+        loading.value = false;
+        dialog.value = false;
+
         alert(
-          `Nome: ${this.nome}\nE-mail: ${this.email}\nCargo: ${this.cargo}\nAniversário: ${this.selectedDate}`
+          `Nome: ${nome.value}\nE-mail: ${email.value}\nCargo: ${cargo.value}\nAniversário: ${selectedDate.value}`
         );
 
-        this.nome ='',
-        this.email ='',
-        this.selectedDate = '',
-        this.cargo =''
+        nome.value = '';
+        email.value = '';
+        selectedDate.value = '';
+        cargo.value = '';
       }, 2000);
-    },
+    };
 
-    required(v) {
-      return !!v || '';
-    },
+    const required = (v) => !!v || '';
 
-    emailRule(v) {
-      this.validEmail = /^\S+@\S+\.\S+$/.test(v);
-      return this.validEmail || 'E-mail inválido.';
-    },
+    const emailRule = (v) => {
+      validEmail.value = /^\S+@\S+\.\S+$/.test(v);
+      return validEmail.value || 'E-mail inválido.';
+    };
 
-    validateForm() {
-      return (
-        this.required(this.nome) &&
-        this.required(this.email) &&
-        this.emailRule(this.email) &&
-        this.required(this.cargo) &&
-        this.required(this.selectedDate)
-      );
-    },
+    const validateForm = () => {
+      return required(nome.value) && required(email.value) && emailRule(email.value) && required(cargo.value) && required(selectedDate.value);
+    };
+
+    return {
+      dialog,
+      form,
+      email,
+      password,
+      loading,
+      selectedDate,
+      nome,
+      cargo,
+      validEmail,
+      teste,
+      onSubmit,
+      required,
+      emailRule,
+      validateForm,
+ 
+    };
   },
 };
 </script>

@@ -54,9 +54,9 @@
                     <td colspan="3"> 
                         <div class="d-flex justify-end">
 
-                           <update :IdUser="user.id" />
+                           <update :IdUser="user.id" :Username="user.username " :Useremail="user.email"/>
                         
-                           <delete :IdUser="user.id"/>
+                           <delete :IdUser="user.id" :Username="user.username "/>
                         </div>
                     </td>
                 </tr>

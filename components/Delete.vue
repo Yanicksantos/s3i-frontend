@@ -3,11 +3,11 @@
         <v-btn color="#B71C1C" icon="mdi-delete-forever" @click="teste1()" variant="text"></v-btn>
     
 
-        <v-dialog v-model="dialog" persistent width="400">    
+        <v-dialog v-model="dialog" persistent max-width="600">    
             <v-card>
                 <v-card-item>
                     <v-card-title>
-                        Excluir usuario
+                        Excluir <span class="font-weight-black">{{Username}}</span>
                     </v-card-title>
                     <v-card-text >
                        <p class="mt-4">Tem certeza que deseja excluir esse usuário?</p>
@@ -48,6 +48,11 @@ export default {
  props: {
     IdUser: {
       type: Number, 
+      required: true,
+    },
+  
+    Username: {
+      type: String,
       required: true,
     },
   },
