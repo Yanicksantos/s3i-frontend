@@ -117,17 +117,21 @@ export default {
       setTimeout(() => {
         this.loading = false;
         this.dialog = false;
+        
+        if (this.loading == false){
+             alert("Usuario Adicionado com sucesso!");
+        }
+       
 
-        alert(
-          `Nome: ${this.nome}\nE-mail: ${this.email}\nCargo: ${this.cargo}\nAniversário: ${this.selectedDate}`
-        );
-
-        this.nome ='',
-        this.email ='',
-        this.selectedDate = '',
-        this.cargo =''
-      }, 2000);
+            this.nome ='',
+            this.email ='',
+            this.selectedDate = '',
+            this.cargo =''
+        }, 2000);
+      
     },
+
+    
     required(v) {
       return !!v || '';
     },
