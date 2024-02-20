@@ -18,13 +18,13 @@
             >
                 <thead >
                 <tr >
-                    <th class="text-center font-weight-black" colspan="1">
+                    <th class="text-center font-weight-black" colspan="4">
                     nome
                     </th>
-                    <th class="text-center font-weight-black" colspan="6">
+                    <th class="text-center font-weight-black" colspan="4">
                     email
                     </th>
-                    <th class="text-center font-weight-black" colspan="6">
+                    <th class="text-center font-weight-black" colspan="5">
                     Aniversário
                     </th>
                     <th class="text-left" colspan="3">
@@ -50,7 +50,7 @@
                 >
                     <td colspan="4" class="text-center ">{{ user.name }} </td>
                     <td colspan="4" class="text-center ">{{ user.email }}</td>
-                    <td colspan="4" class="text-center "> {{ formatarData(user.birthdate) }}</td>
+                    <td colspan="5" class="text-center "> {{ formatarData(user.birthdate) }}</td>
                     <td colspan="3"> 
                         <div class="d-flex justify-end">
 
