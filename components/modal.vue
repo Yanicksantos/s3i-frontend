@@ -128,8 +128,7 @@ export default {
       // Construir a string no formato "yyyy-mm-ddTHH:mm:ss.SSSZ"
       var dataConvertida = ano + '-' + mes + '-' + dia + 'T00:00:00.000Z';
 
-      // Imprimir o resultado
-      console.log(dataConvertida);
+    
 
 
     const userapi = {

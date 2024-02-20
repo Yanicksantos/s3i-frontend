@@ -85,9 +85,9 @@
     </v-dialog>
         
     </div>
-</template>
-<script>
+</template><script>
 import { ref } from 'vue';
+import { format } from 'date-fns';
 
 export default {
   props: {
@@ -103,6 +103,10 @@ export default {
       type: String,
       required: true,
     },
+    IdUser: {
+      type: Number,
+      required: true,
+    },
   },
   setup(props) {
     const dialog = ref(false);
@@ -114,60 +118,33 @@ export default {
     const nome = ref('');
     const cargo = ref('');
     const validEmail = ref(true);
-    const id = ref (null)
+    const id = ref(null);
+
+    const formatarData = (data) => {
+      return format(new Date(data), 'yyyy-MM-dd');
+    };
 
     const teste = async () => {
-        id.value = props.IdUser
-        email.value =  props.Useremail;
-        nome.value = props.Username;
-        cargo.value = 'Analista';
-        selectedDate.value = props.Userbirthdate;
-        dialog.value = true;
-
-
-       
-
-
-        /*
-        dialog.value = true;
-      // Assuming `useFetch` is a function or composition API related to fetching data
-      const requi = await useAsyncData('users', () => $fetch(`https://localhost:7021/usuario/${props.IdUser}`))
-
-      /*const { data: users, pending, refresh } = await useFetch(`https://localhost:7021/usuario/${props.IdUser}`, {
-        method: 'GET',
-        headers: {
-          'content-type': 'application/json',
-        },
-        lazy: true,
-        server: false,
-      });
-
-      const { payload } = useNuxtApp();
-
-
-    if(!payload.pending){
-     
-        nome.value = payload.data["users"].username;
-        email.value = payload.data["users"].email;
-        cargo.value = 'California';
-        selectedDate.value = Date.now();
-    }*/
-
-      
+      id.value = props.IdUser;
+      email.value = props.Useremail;
+      nome.value = props.Username;
+      cargo.value = 'Analista';
+      selectedDate.value = formatarData(props.Userbirthdate);
+      dialog.value = true;
     };
 
     const onSubmit = async () => {
       if (!form.value || !validateForm()) return;
 
       loading.value = true;
-    const userapi = {
+      const userapi = {
         Id: id.value,
-      username: nome.value,
-      email: email.value
-    };
+        username: nome.value,
+        email: email.value,
+      };
 
-       await useFetch(`https://localhost:7021/editar`, {
-        method: 'PUT', 
+      await useFetch(`https://localhost:7021/editar`, {
+        method: 'PUT',
         headers: {
           'content-type': 'application/json',
         },
@@ -179,16 +156,12 @@ export default {
       loading.value = false;
       dialog.value = false;
 
+      nome.value = '';
+      email.value = '';
+      selectedDate.value = '';
+      cargo.value = '';
 
-        nome.value = '';
-        email.value = '';
-        selectedDate.value = '';
-        cargo.value = '';
-
-        alert("usuario atualizado com sucesso!")
-
-
-     
+      alert("Usuário atualizado com sucesso!");
     };
 
     const required = (v) => !!v || '';
@@ -199,7 +172,13 @@ export default {
     };
 
     const validateForm = () => {
-      return required(nome.value) && required(email.value) && emailRule(email.value) && required(cargo.value) && required(selectedDate.value);
+      return (
+        required(nome.value) &&
+        required(email.value) &&
+        emailRule(email.value) &&
+        required(cargo.value) &&
+        required(selectedDate.value)
+      );
     };
 
     return {
@@ -217,7 +196,6 @@ export default {
       required,
       emailRule,
       validateForm,
- 
     };
   },
 };

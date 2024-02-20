@@ -54,7 +54,7 @@
                     <td colspan="3"> 
                         <div class="d-flex justify-end">
 
-                           <update :Username="user.name" :Useremail="user.email" :Userbirthdate="formatarData(user.birthdate)"/>
+                           <update :Username="user.name" :Useremail="user.email" :Userbirthdate="user.birthdate"/>
                         
                            <delete :Username="user.name"/>
                         </div>
@@ -86,7 +86,7 @@ const { data: users, pending, refresh } = await useFetch("https://usuarioapi.up.
 
 // Função para formatar a data
 const formatarData = (data) => {
-    return format(new Date(data), 'yyyy-MM-dd');
+    return format(new Date(data), 'dd-MM-yyyy');
 };
 
 </script>
