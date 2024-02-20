@@ -48,15 +48,15 @@
                     v-for="user in users"
                     :key="user.id"
                 >
-                    <td colspan="1" class="text-center ">{{ user.id}}</td>
-                    <td colspan="6" class="text-center ">{{ user.username }}</td>
+                    <td colspan="1" class="text-center ">{{ user.birthdate}}</td>
+                    <td colspan="6" class="text-center ">{{ user.name }}</td>
                     <td colspan="6" class="text-center "> {{ user.email }}</td>
                     <td colspan="3"> 
                         <div class="d-flex justify-end">
 
-                           <update :IdUser="user.id" :Username="user.username " :Useremail="user.email"/>
+                           <update :IdUser="1" :Username="user.name" :Useremail="user.email"/>
                         
-                           <delete :IdUser="user.id" :Username="user.username "/>
+                           <delete :IdUser="1" :Username="user.name"/>
                         </div>
                     </td>
                 </tr>
@@ -73,7 +73,7 @@
 </template>
 
 <script setup>
-    const { data: users, pending,refresh } = await useFetch("https://localhost:7021/listarUsuarios", {
+    const { data: users, pending,refresh } = await useFetch("https://usuarioapi.up.railway.app/api/Users/GetUsers", {
         method: "GET",
         headers:{
             "content-type": "application/json"
