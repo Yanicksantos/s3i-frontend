@@ -19,13 +19,13 @@
                 <thead >
                 <tr >
                     <th class="text-center font-weight-black" colspan="1">
-                    #
-                    </th>
-                    <th class="text-center font-weight-black" colspan="6">
                     nome
                     </th>
                     <th class="text-center font-weight-black" colspan="6">
                     email
+                    </th>
+                    <th class="text-center font-weight-black" colspan="6">
+                    Aniversário
                     </th>
                     <th class="text-left" colspan="3">
                     
@@ -48,15 +48,15 @@
                     v-for="user in users"
                     :key="user.id"
                 >
-                    <td colspan="1" class="text-center ">{{ user.birthdate}}</td>
-                    <td colspan="6" class="text-center ">{{ user.name }}</td>
-                    <td colspan="6" class="text-center "> {{ user.email }}</td>
+                    <td colspan="4" class="text-center ">{{ user.name }} </td>
+                    <td colspan="4" class="text-center ">{{ user.email }}</td>
+                    <td colspan="4" class="text-center "> {{ formatarData(user.birthdate) }}</td>
                     <td colspan="3"> 
                         <div class="d-flex justify-end">
 
-                           <update :IdUser="1" :Username="user.name" :Useremail="user.email"/>
+                           <update :Username="user.name" :Useremail="user.email" :Userbirthdate="formatarData(user.birthdate)"/>
                         
-                           <delete :IdUser="1" :Username="user.name"/>
+                           <delete :Username="user.name"/>
                         </div>
                     </td>
                 </tr>
@@ -73,14 +73,20 @@
 </template>
 
 <script setup>
-    const { data: users, pending,refresh } = await useFetch("https://usuarioapi.up.railway.app/api/Users/GetUsers", {
-        method: "GET",
-        headers:{
-            "content-type": "application/json"
-        },
-        lazy:true,
-        server:false,
-      
-       
-    })
+import { format } from 'date-fns';
+
+const { data: users, pending, refresh } = await useFetch("https://usuarioapi.up.railway.app/api/Users/GetUsers", {
+    method: "GET",
+    headers: {
+        "content-type": "application/json"
+    },
+    lazy: true,
+    server: false,
+});
+
+// Função para formatar a data
+const formatarData = (data) => {
+    return format(new Date(data), 'yyyy-MM-dd');
+};
+
 </script>

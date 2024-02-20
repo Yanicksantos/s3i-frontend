@@ -44,15 +44,15 @@
                 density="compact"
               ></v-text-field>
 
-              <v-select
+              <!--<v-select
                 v-model="cargo"
                 label="Cargo"
-                :items="['California', 'Colorado', 'Florida']"
+                :items="['Administrador', 'Analista', 'Assistente', 'Auxiliar']"
                 :readonly="loading"
                 :rules="[required]"
                 variant="outlined"
                 density="compact"
-              ></v-select>
+              ></v-select>-->
 
               <v-text-field
                 v-model="selectedDate"
@@ -95,8 +95,9 @@
 </template>
 
 <script>
+ import { format } from 'date-fns';
 export default {
-  data: () => ({
+   data: () => ({
     dialog: false,
     form: false,
     email: null,
@@ -109,20 +110,35 @@ export default {
   }),
 
   methods: {
+ 
    async onSubmit() {
       if (!this.form || !this.validateForm()) return;
 
       this.loading = true;
 
-        
+   
+      var dataFormatada = this.selectedDate;
+
+      // Dividir a string para obter os componentes de dia, mês e ano
+      var partes = dataFormatada.split('-');
+      var ano = partes[0];
+      var mes = partes[1];
+      var dia = partes[2];
+
+      // Construir a string no formato "yyyy-mm-ddTHH:mm:ss.SSSZ"
+      var dataConvertida = ano + '-' + mes + '-' + dia + 'T00:00:00.000Z';
+
+      // Imprimir o resultado
+      console.log(dataConvertida);
 
 
     const userapi = {
-      username: this.nome,
-      email: this.email
+      name: this.nome,
+      email: this.email,
+      birthdate: dataConvertida
     };
-
-    const { data, pending } = await useFetch('https://localhost:7021/usuario', {
+    
+    const { data, pending } = await useFetch('https://usuarioapi.up.railway.app/api/Users/Insert', {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
@@ -135,7 +151,7 @@ export default {
     this.nome ='',
     this.email ='',
     this.selectedDate = '',
-    this.cargo =''
+  
     this.loading = false;
   
       this.dialog = false;
@@ -157,7 +173,6 @@ export default {
         this.required(this.nome) &&
         this.required(this.email) &&
         this.emailRule(this.email) &&
-        this.required(this.cargo) &&
         this.required(this.selectedDate)
       );
     },

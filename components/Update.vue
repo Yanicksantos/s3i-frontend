@@ -38,15 +38,15 @@
                 density="compact"
               ></v-text-field>
 
-              <v-select
+                <!--<v-select
                 v-model="cargo"
                 label="Cargo"
-                :items="['California', 'Colorado', 'Florida']"
+                :items="['Administrador', 'Analista', 'Assistente', 'Auxiliar']"
                 :readonly="loading"
                 :rules="[required]"
                 variant="outlined"
                 density="compact"
-              ></v-select>
+              ></v-select>-->
 
               <v-text-field
                 v-model="selectedDate"
@@ -91,8 +91,8 @@ import { ref } from 'vue';
 
 export default {
   props: {
-    IdUser: {
-      type: Number,
+    Userbirthdate: {
+      type: String,
       required: true,
     },
     Username: {
@@ -120,8 +120,8 @@ export default {
         id.value = props.IdUser
         email.value =  props.Useremail;
         nome.value = props.Username;
-        cargo.value = 'California';
-        selectedDate.value = '18/02/2024';
+        cargo.value = 'Analista';
+        selectedDate.value = props.Userbirthdate;
         dialog.value = true;
 
 
