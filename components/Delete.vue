@@ -75,7 +75,7 @@ export default {
     async Submit() {
       this.loading = true;
 
-      await useFetch(`https://localhost:7021/delete?id=${this.IdUser}`, {
+      await useFetch(`https://usuarioapi.up.railway.app/api/Users/Delete?id=10`, {
         method: 'DELETE',
         headers: {
           'content-type': 'application/json',

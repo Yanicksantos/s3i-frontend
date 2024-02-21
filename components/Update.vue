@@ -138,12 +138,13 @@ export default {
 
       loading.value = true;
       const userapi = {
-        Id: id.value,
-        username: nome.value,
+        Id:8,
+        name: nome.value,
         email: email.value,
+        birthdate: "2024-02-21T18:40:03.487Z"
       };
 
-      await useFetch(`https://localhost:7021/editar`, {
+      await useFetch(`https://usuarioapi.up.railway.app/api/Users/Update?id=8`, {
         method: 'PUT',
         headers: {
           'content-type': 'application/json',
