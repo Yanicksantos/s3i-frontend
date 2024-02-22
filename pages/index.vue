@@ -1,6 +1,8 @@
 <template>
 <div class="container">
     <v-container>
+        <v-btn prepend-icon="mdi-back" to="/teste">ir para teste</v-btn>
+
         <div class="pX-10  mx-auto">
          <modal />
         <div class="mx-auto my-2">
