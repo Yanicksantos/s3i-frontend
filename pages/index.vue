@@ -1,8 +1,6 @@
 <template>
 <div class="container">
     <v-container>
-        <v-btn prepend-icon="mdi-back" to="/teste">ir para teste</v-btn>
-
         <div class="pX-10  mx-auto">
          <modal />
         <div class="mx-auto my-2">
@@ -20,13 +18,16 @@
             >
                 <thead >
                 <tr >
+                    <th class="text-center font-weight-black" colspan="1">
+                    Id
+                    </th>
                     <th class="text-center font-weight-black" colspan="4">
                     nome
                     </th>
                     <th class="text-center font-weight-black" colspan="4">
                     email
                     </th>
-                    <th class="text-center font-weight-black" colspan="5">
+                    <th class="text-center font-weight-black" colspan="4">
                     Aniversário
                     </th>
                     <th class="text-left" colspan="3">
@@ -50,15 +51,16 @@
                     v-for="user in users"
                     :key="user.id"
                 >
+                    <td colspan="1" class="text-center ">{{ user.id }}</td>
                     <td colspan="4" class="text-center ">{{ user.name }} </td>
                     <td colspan="4" class="text-center ">{{ user.email }}</td>
-                    <td colspan="5" class="text-center "> {{ formatarData(user.birthdate) }}</td>
+                    <td colspan="4" class="text-center "> {{ formatarData(user.birthdate) }}</td>
                     <td colspan="3"> 
                         <div class="d-flex justify-end">
 
-                           <update :Username="user.name" :Useremail="user.email" :Userbirthdate="user.birthdate"/>
+                           <update :IdUser="user.id" :Username="user.name" :Useremail="user.email" :Userbirthdate="user.birthdate"/>
                         
-                           <delete :Username="user.name"/>
+                           <delete :Username="user.name" :IdUser="user.id"/>
                         </div>
                     </td>
                 </tr>

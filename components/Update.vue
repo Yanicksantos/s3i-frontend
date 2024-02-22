@@ -128,7 +128,6 @@ export default {
       id.value = props.IdUser;
       email.value = props.Useremail;
       nome.value = props.Username;
-      cargo.value = 'Analista';
       selectedDate.value = formatarData(props.Userbirthdate);
       dialog.value = true;
     };
@@ -138,13 +137,12 @@ export default {
 
       loading.value = true;
       const userapi = {
-        Id:8,
         name: nome.value,
         email: email.value,
         birthdate: "2024-02-21T18:40:03.487Z"
       };
 
-      await useFetch(`https://usuarioapi.up.railway.app/api/Users/Update?id=8`, {
+      await useFetch(`https://usuarioapi.up.railway.app/api/Users/Update?id=${id.value}`, {
         method: 'PUT',
         headers: {
           'content-type': 'application/json',
@@ -177,7 +175,6 @@ export default {
         required(nome.value) &&
         required(email.value) &&
         emailRule(email.value) &&
-        required(cargo.value) &&
         required(selectedDate.value)
       );
     };

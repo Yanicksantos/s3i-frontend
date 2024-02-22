@@ -64,18 +64,13 @@ export default {
 
   methods: {
     teste1() {
-         this.nome =` teste de ${this.IdUser}` ;
         this.dialog = true;
-       
-       
-
-
     },
 
     async Submit() {
       this.loading = true;
 
-      await useFetch(`https://usuarioapi.up.railway.app/api/Users/Delete?id=10`, {
+      await useFetch(`https://usuarioapi.up.railway.app/api/Users/Delete?id=${this.IdUser}`, {
         method: 'DELETE',
         headers: {
           'content-type': 'application/json',
@@ -88,10 +83,6 @@ export default {
       this.dialog = false;
       alert("Usuario exluído com sucesso!");
     },
-    
- 
-
-
    
   },
 };
