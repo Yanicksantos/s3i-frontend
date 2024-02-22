@@ -4,20 +4,41 @@
 
       <v-app-bar :elevation="2">
             <v-app-bar-title >
-                <nuxt-link to="/teste">
-                    <v-img src="https://predengenharia.vercel.app/img/Headers/Logomarca-Pred-Engenharia-1536x319.png"  max-width="150"></v-img>              
+                <nuxt-link to="/">
+                    <v-img src="https://predengenharia.vercel.app/img/Headers/Logomarca-Pred-Engenharia-1536x319.png"  max-width="120"></v-img>              
                 </nuxt-link>
 
+           
+
+
             </v-app-bar-title>
+
+            
          
-        
+            <v-list class="d-flex mr-10">
+              <v-list-item>Árvore Lógica</v-list-item>
+              <v-list-item>HelpDesk</v-list-item>
+            </v-list>
 
         <template v-slot:append>
-            <v-btn icon="mdi-heart"></v-btn>
+          <v-list class="px-6 d-flex justify-lg-space-between align-center">
 
-            <v-btn icon="mdi-magnify"></v-btn>
+          
+          <v-badge :content="5" color="error">
+            <v-icon icon="mdi-bell-cog" ></v-icon>
+          </v-badge>
 
-            <v-btn icon="mdi-dots-vertical"></v-btn>
+          <v-avatar
+              size="36px"
+              class=" mx-6"
+            >
+              <v-img
+                alt="Avatar"
+                src="https://avatars0.githubusercontent.com/u/9064066?v=4&s=460"
+              ></v-img>
+            </v-avatar>
+            <span class="font-weight-thin">PedroSouza54, <span class="font-weight-black">Admin</span> </span>
+          </v-list>
         </template>
     </v-app-bar>
   
@@ -44,15 +65,26 @@
 
          <v-row>
             <v-col cols="12">
-                <v-card height="200" elevation="1">
+                <v-card height="250" elevation="1">
+                  <v-card-item>
+                      <v-card-actions>
+                        <v-spacer></v-spacer>
+                        <v-btn color="yellow-lighten-1"  variant="flat">Editar</v-btn>
+                        <v-btn color="deep-orange-darken-4" variant="flat">Eliminar</v-btn>
+                      </v-card-actions>
+                    
+                  </v-card-item>
 
                 </v-card>
             </v-col>
          </v-row>
 
+
+
+
          <v-row>
             <v-col cols="3">
-                <v-card elevation="8" height="450">
+                <v-card elevation="8" height="500">
                                                       
                         <v-card-actions> 
                             <v-card-title>Informações</v-card-title>
@@ -76,7 +108,7 @@
                 </v-card>
             </v-col>
             <v-col cols="9">
-                <v-card elevation="8" height="450">
+                <v-card elevation="8" height="500">
                   <v-card-item>
                     <v-card-title class="d-flex align-center pe-2">
                     Lista de Usuários
@@ -111,7 +143,7 @@
                             :items="usersi"
                             :search="search"
                            
-                            height="300"
+                            height="350"
                             hover
                             fixed-header
                             show-select
@@ -119,7 +151,7 @@
                        
                         >
                         </v-data-table-virtual>
-                        <v-btn @click="refresh" class="mt-6"  color="#1A237E">Atualizar</v-btn>
+                        <v-btn @click="refresh" class="mt-8"  color="#1A237E">Atualizar</v-btn>
                     </v-card-item>
 
                 </v-card>
