@@ -1,6 +1,5 @@
 <template>
-  <div class="h-25">
-    <h1>LISTA DE USUÁRIOS - S3I</h1>
+  <div class="">
 
     <v-dialog v-model="dialog" persistent width="400">
       <template v-slot:activator="{ props }">
@@ -8,10 +7,11 @@
           v-bind="props"
           prepend-icon="mdi-plus"
           color="#4CAF50"
-          class="mb-6 mt-4"
+          class="px-4 ml-4 mt-6"
           size="large"
+          variant="tonal"
         >
-          Adicionar
+          Novo Usuario
         </v-btn>
       </template>
       <v-card>
@@ -89,8 +89,6 @@
         </v-card-item>
       </v-card>
     </v-dialog>
-
-    <hr>
   </div>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-btn color="#B71C1C" icon="mdi-delete-forever" @click="teste1()" variant="text"></v-btn>
+        <v-btn color="#B71C1C" icon="mdi-delete-forever" @click="teste1()" variant="text"  size="small"></v-btn>
     
 
         <v-dialog v-model="dialog" persistent max-width="600">    
@@ -48,12 +48,12 @@ export default {
  props: {
     IdUser: {
       type: Number, 
-      required: true,
+      required: false,
     },
   
     Username: {
       type: String,
-      required: true,
+      required: false,
     },
   },
   data: () => ({

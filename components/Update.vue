@@ -1,6 +1,6 @@
 <template>
     <div>
-    <v-btn  color="#1A237E" icon="mdi-pencil" @click="teste()" variant="text"></v-btn>
+    <v-btn  color="#1A237E" icon="mdi-pencil" @click="teste()" variant="text"  size="small"></v-btn>
 
     <v-dialog v-model="dialog" persistent width="400">    
       <v-card>
@@ -93,19 +93,19 @@ export default {
   props: {
     Userbirthdate: {
       type: String,
-      required: true,
+      required: false,
     },
     Username: {
       type: String,
-      required: true,
+      required: false,
     },
     Useremail: {
       type: String,
-      required: true,
+      required: false,
     },
     IdUser: {
       type: Number,
-      required: true,
+      required: false,
     },
   },
   setup(props) {
