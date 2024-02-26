@@ -63,15 +63,15 @@
                 :headers="headers"
                 :items="usersi"
                 :search="search"
-                :sort-by="[{ key: 'name', order: 'asc' }]"
+                :sort-by="[{ key: 'id', order: 'asc' }]"
                 height="450"
                 hover
                 fixed-header
         
             
             >
-            <template v-slot:item.status="{ item }">
-            <v-switch v-model="item.id" readonly></v-switch>
+            <template v-slot:item.status="{ item }" >
+            <v-switch v-model="item.id" readonly ></v-switch>
             </template>
 
             <template v-slot:item.actions="{ item }">
@@ -124,13 +124,13 @@
     };
 
  const headers = [
-            { align: 'start', key:'id', title: 'Id'},
+            { align: 'start', key:'id', title: 'Id',},
             { key: 'name', title: 'Nome',},
             { key: 'email', title: 'E-mail' },
           //  { key: 'birthdate', title: 'Aniversário' },
           
-            { title: 'Status', key: 'status', sortable: false },
-            { title: '', key: 'actions', sortable: false },
+            { title: 'Status', key: 'status',},
+            { title: '', key: 'actions', },
 
     ]
 

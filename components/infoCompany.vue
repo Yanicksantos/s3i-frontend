@@ -1,14 +1,6 @@
 <template>
-    <div class="h-100 w-100 mb-4">
-            <v-card height="300" flat>
-                <v-card height="220" flat></v-card>
-                
-                
-                <v-card-item><hr></v-card-item>
-                <v-card-item>
-                    <v-card-text>teste</v-card-text>
-                </v-card-item>
-            </v-card>
+    <div class=" w-100 mb-4  rounded-sm bg-grey-lighten-5 pa-2" style="height: 200px;">
+           
     </div>
 </template>
 
@@ -22,7 +14,7 @@
 
 
 
-
+ 
 
 
 

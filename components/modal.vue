@@ -8,8 +8,7 @@
           prepend-icon="mdi-plus"
           color="#4CAF50"
           class="px-4 ml-4 mt-6"
-          size="large"
-          variant="tonal"
+          variant="flat"
         >
           Novo Usuario
         </v-btn>

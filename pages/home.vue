@@ -42,7 +42,7 @@
         </template>
     </v-app-bar>
   
-      <v-navigation-drawer v-model="drawer" color="blue-grey-darken-4" width="150" >
+      <v-navigation-drawer v-model="drawer" color="blue-grey-darken-4" width="200" >
        
         <v-list>
           <v-list-item
@@ -64,11 +64,12 @@
         <info-company />
 
          <v-row>
-            <v-col cols="2">
-               <Details />
-            </v-col>
+            
             <v-col cols="10">
               <table-users />
+            </v-col>
+            <v-col cols="2">
+               <Details />
             </v-col>
         </v-row>
         </v-container>
