@@ -42,7 +42,7 @@
         </template>
     </v-app-bar>
   
-      <v-navigation-drawer v-model="drawer" color="blue-grey-darken-4" width="200" >
+      <v-navigation-drawer v-model="drawer" color="blue-grey-darken-4" width="200" v-if="false">
        
         <v-list>
           <v-list-item

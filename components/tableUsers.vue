@@ -70,8 +70,17 @@
         
             
             >
+            <template v-slot:item.login="{ item }" >
+                <v-text>userteste01</v-text>
+            </template>
+            <template v-slot:item.telefone="{ item }" >
+                <v-text>(27) 981767293</v-text>
+            </template>
+            <template v-slot:item.funcao="{ item }" >
+                <v-text>admin</v-text>
+            </template>
             <template v-slot:item.status="{ item }" >
-            <v-switch v-model="item.id" readonly ></v-switch>
+                <v-switch v-model="item.id" readonly ></v-switch>
             </template>
 
             <template v-slot:item.actions="{ item }">
@@ -126,9 +135,11 @@
  const headers = [
             { align: 'start', key:'id', title: 'Id',},
             { key: 'name', title: 'Nome',},
+            { key: 'login', title: 'Login' },
             { key: 'email', title: 'E-mail' },
           //  { key: 'birthdate', title: 'Aniversário' },
-          
+          { title: 'telefone', key: 'telefone',},
+          { title: 'Perfil', key: 'funcao',},
             { title: 'Status', key: 'status',},
             { title: '', key: 'actions', },
 
