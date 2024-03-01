@@ -61,7 +61,7 @@
         <v-card-item v-else>
             <v-data-table-virtual
                 :headers="headers"
-                :items="usersi"
+              
                 :search="search"
                 :sort-by="[{ key: 'id', order: 'asc' }]"
                 height="450"
@@ -133,10 +133,10 @@
     };
 
  const headers = [
-            { align: 'start', key:'id', title: 'Id',},
-            { key: 'name', title: 'Nome',},
+            //{ align: 'start', key:'id', title: 'Id',},
+           // { key: 'name', title: 'Nome',},
             { key: 'login', title: 'Login' },
-            { key: 'email', title: 'E-mail' },
+            //{ key: 'email', title: 'E-mail' },
           //  { key: 'birthdate', title: 'Aniversário' },
           { title: 'telefone', key: 'telefone',},
           { title: 'Perfil', key: 'funcao',},
