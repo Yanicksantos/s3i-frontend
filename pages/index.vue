@@ -2,10 +2,11 @@
     <v-app id="inspire">
 
 
-      <v-app-bar :elevation="2">
+      <v-app-bar height="50" class="px-auto py-2">
+        <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
             <v-app-bar-title >
                 <nuxt-link to="/">
-                    <v-img src="https://predengenharia.vercel.app/img/Headers/Logomarca-Pred-Engenharia-1536x319.png"  max-width="120"></v-img>              
+                    <v-img src="https://predengenharia.vercel.app/img/Headers/Logomarca-Pred-Engenharia-1536x319.png"  max-width="100"></v-img>              
                 </nuxt-link>
 
            
@@ -16,18 +17,20 @@
             
          
             <v-list class="d-flex mr-10">
-              <v-list-item>Árvore Lógica</v-list-item>
-              <v-list-item>HelpDesk</v-list-item>
+              <v-list-item><v-btn variant="flat" color="indigo-darken-4" size="small">HelpDesk</v-btn> </v-list-item>
             </v-list>
 
         <template v-slot:append>
           <v-list class="px-6 d-flex justify-lg-space-between align-center">
 
-          
-          <v-badge :content="5" color="error">
+          <v-btn>
+            <v-badge :content="5" color="error">
             <v-icon icon="mdi-bell-cog" ></v-icon>
           </v-badge>
 
+          </v-btn>
+          
+          
           <v-avatar
               size="36px"
               class=" mx-6"
@@ -36,13 +39,17 @@
                 alt="Avatar"
                 src="https://avatars0.githubusercontent.com/u/9064066?v=4&s=460"
               ></v-img>
-            </v-avatar>
-            <span class="font-weight-thin">PedroSouza54, <span class="font-weight-black">Admin</span> </span>
+          </v-avatar>
+
           </v-list>
         </template>
     </v-app-bar>
   
-      <v-navigation-drawer v-model="drawer" color="blue-grey-darken-4" width="200" v-if="true">
+    <v-navigation-drawer 
+      color="blue-grey-darken-4" 
+      v-model="drawer"
+      temporary
+      >
        
         <v-list>
           <v-list-item
@@ -65,12 +72,12 @@
 
          <v-row>
             
-            <v-col cols="10">
+            <v-col cols="12">
               <table-users />
             </v-col>
-            <v-col cols="2">
+            <!--<v-col cols="">
                <Details />
-            </v-col>
+            </v-col>-->
         </v-row>
         </v-container>
       </v-main>
@@ -79,7 +86,7 @@
   
   <script setup>
     import { ref } from 'vue'
-
+  
 
     const cards = ['Today', 'Yesterday']
     const links = [

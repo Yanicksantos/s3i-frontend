@@ -1,7 +1,7 @@
 <template>
-    <v-card elevation="10" height="750" class="pa-2" color="grey-lighten-2">
+    <v-card elevation="10" height="500" class="pa-2" color="grey-lighten-2">
         <v-card-item>
-        <v-card-title class="d-flex align-center pe-2 font-weight-black text-h5">
+        <v-card-title class="d-flex align-center pe-2 font-weight-black text-h6">
         Lista de Usuários
 
         <v-spacer></v-spacer>
@@ -13,7 +13,7 @@
 
         <v-card-item>
         <v-row>
-            <v-col cols="5">
+            <v-col cols="6">
                 <v-text-field
                     v-model="search"
                     prepend-inner-icon="mdi-magnify"
@@ -22,6 +22,7 @@
                     single-line
                     flat
                     hide-details
+                    size="small"
                     variant="solo-filled"
                 
                 ></v-text-field>
@@ -31,18 +32,18 @@
             <v-spacer></v-spacer>
         
             <v-col cols="3">
-                <v-card height="100" elevation="" class="pa-2" flat variant="tonal">
+                <v-card height="50" elevation="" class="pa-2" flat variant="tonal">
                     <div  class="d-flex flex-column justify-space-between align-center h-100 w-100">
-                        <h1 class="text-h3 font-weight-black text-purple"> 745 </h1>
+                        <h1 class="text-caption font-weight-black text-purple"> 745 </h1>
                         <p class="text-caption text-purple-darken-4">Usuarios Cadastrados</p>
                     </div>
                 </v-card>
                 </v-col>
             
                 <v-col cols="3">
-                <v-card height="100"  color="teal-darken-4" class="pa-2" flat variant="tonal">
+                <v-card height="50"  color="teal-darken-4" class="pa-2" flat variant="tonal">
                     <div  class="d-flex flex-column justify-space-between align-center h-100 w-100">
-                        <h1 class="text-h3 font-weight-black "> 225</h1>
+                        <h1 class="text-caption font-weight-black "> 225</h1>
                         <p class="text-caption ">Usuarios Ativos</p>
                     </div>
                 </v-card>
@@ -61,15 +62,18 @@
         <v-card-item v-else>
             <v-data-table-virtual
                 :headers="headers"
-              
+                :items="usersi"
                 :search="search"
-                :sort-by="[{ key: 'id', order: 'asc' }]"
-                height="450"
+                :sort-by="[{ key: 'nome', order: 'asc' }]"
+                height="270"
                 hover
                 fixed-header
         
             
             >
+            <!--<template v-slot:item.id="{ item }"  class="d-none">
+                <v-text>userteste01</v-text>
+            </template>
             <template v-slot:item.login="{ item }" >
                 <v-text>userteste01</v-text>
             </template>
@@ -78,9 +82,16 @@
             </template>
             <template v-slot:item.funcao="{ item }" >
                 <v-text>admin</v-text>
+            </template>-->
+            <template v-slot:item.ativoInativo="{ item }" >
+                <v-switch readonly :model-value="item.ativoInativo == 'A'?true:false" :color="item.ativoInativo == 'A'?'success':'error'"></v-switch>
             </template>
-            <template v-slot:item.status="{ item }" >
-                <v-switch v-model="item.id" readonly ></v-switch>
+
+            <template v-slot:item.dataRegistro="{ item }" >
+                <v-text>{{ formatarData(item.dataRegistro) }}</v-text>
+            </template>
+            <template v-slot:item.dataAtualizacao="{ item }" >
+                <v-text>{{ formatarData(item.dataAtualizacao) }}</v-text>
             </template>
 
             <template v-slot:item.actions="{ item }">
@@ -120,7 +131,7 @@
     const search = ref('');
     const model = ref (false);
 
-    const { data: usersi, pending, refresh } = await useFetch("https://usuarioapi.up.railway.app/api/Users/GetUsers", {
+    const { data: usersi, pending, refresh } = await useFetch("https://inspec.up.railway.app/api/Usuarios/GetUsuarios", {
     method: "GET",
     headers: {
         "content-type": "application/json"
@@ -129,19 +140,20 @@
     });
 
     const formatarData = (data) => {
-        return format(new Date(data), 'dd-MM-yyyy');
+        return format(new Date(data), 'dd-MM-yyyy hh:mm:ss a');
     };
 
  const headers = [
-            //{ align: 'start', key:'id', title: 'Id',},
-           // { key: 'name', title: 'Nome',},
-            { key: 'login', title: 'Login' },
-            //{ key: 'email', title: 'E-mail' },
-          //  { key: 'birthdate', title: 'Aniversário' },
-          { title: 'telefone', key: 'telefone',},
-          { title: 'Perfil', key: 'funcao',},
-            { title: 'Status', key: 'status',},
-            { title: '', key: 'actions', },
+        //{ align: 'start', key:'id', title: 'Id',},
+        { key: 'nome', title: 'Nome',},
+        { key: 'login', title: 'Login' },
+        { key: 'email', title: 'E-mail' },
+        { key: 'telefone', title: 'telefone',},     
+        { key: 'idPerfil', title: 'Função',},
+        { key: 'ativoInativo', title: 'status',},
+        { key: 'dataRegistro', title: 'Cadastrado', },
+        { key: 'dataAtualizacao', title: 'Ult.Atualização', },
+        { key: 'actions', title: '',  },
 
     ]
 
