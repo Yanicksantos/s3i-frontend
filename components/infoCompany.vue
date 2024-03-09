@@ -1,5 +1,34 @@
 <template>
-    <div class=" w-100 mb-2  rounded-sm bg-teal pa-2 elevation-2" style="height: 200px;">
+    <div class=" w-100 mb-2  rounded-sm bg-teal pa-4 elevation-4" style="height: 250px; overflow-y: hidden;">
+
+      <div class="h-75 d-flex justify-lg-space-between">
+        <div class="h-100 d-flex  align-start w-50">
+          <v-img src="~/assets/logobiaco.jpeg" height="150" max-width="150" class="rounded-sm mr-8" cover></v-img>
+          <div>
+            <v-list color="teal" class="bg-teal pa-0 font-weight-black">
+              <p class="mb-8 "><span>ID:</span><br> CL0001</p>
+              <p><span class="text-caption">Empresa:</span> Grupo Biancogress</p>
+              <p><span class="text-caption">Filial:</span> Serra</p>
+              <p><span class="text-caption">Contrato:</span> Ativo</p> 
+            </v-list>
+          </div>
+        </div>
+        <div>
+          <v-btn  color="yellow-accent-1" variant="tonal">Editar</v-btn>
+        </div>
+      </div>
+
+      <div class="h-25 w-100">
+        <hr>
+        <div class="w-100  d-flex">        
+            <v-list class="d-flex justify-space-between W-100 bg-teal " >
+              <v-list-item prepend-icon="mdi-factory" class="font-weight-black text-caption"><p>Planta Fabril: <br><span>NÃO DEFINIDO</span></p></v-list-item>
+              <v-list-item prepend-icon="mdi-file-sign" class="font-weight-black text-caption"><p>Tipo de Contrato: <br><span>NÃO DEFINIDO</span></p></v-list-item>
+              <v-list-item prepend-icon="mdi-clipboard-text-clock" class="font-weight-black text-caption"><p>Data de Cadastro: <br><span>20/03/2022</span></p></v-list-item>
+              <v-list-item prepend-icon="mdi-update" class="font-weight-black text-caption"><p>Última Atualização: <br><span>20/03/2024</span></p></v-list-item>
+            </v-list>  
+        </div>
+      </div>
            
     </div>
 </template>

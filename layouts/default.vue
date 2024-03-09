@@ -12,20 +12,12 @@
             
          
             <v-list class="d-flex mr-10">
-              <v-list-item><v-btn variant="flat" color="indigo-darken-4" size="small">HelpDesk</v-btn> </v-list-item>
+              <v-list-item><v-btn variant="flat"  icon="mdi-chat-processing-outline"></v-btn> </v-list-item>
             </v-list>
 
         <template v-slot:append>
           <v-list class="px-6 d-flex justify-lg-space-between align-center">
-
-          <v-btn>
-            <v-badge :content="5" color="error">
-            <v-icon icon="mdi-bell-cog" ></v-icon>
-          </v-badge>
-
-          </v-btn>
-          
-          
+        
           <v-avatar
               size="36px"
               class=" mx-6"
@@ -36,12 +28,18 @@
               ></v-img>
           </v-avatar>
 
+         
+            <v-badge  color="error" dot>
+              <v-icon icon="mdi-bell-cog" ></v-icon>
+            </v-badge>
+          
+
           </v-list>
         </template>
     </v-app-bar>
 
     <v-navigation-drawer       
-      :width="drawer?'300':'50'"
+      :width="drawer?'300':'70'"
       class="pt-6"
       
     >
@@ -51,9 +49,9 @@
           <v-list-item-title v-if="drawer" >Home</v-list-item-title>
         </v-list-item>
 
-        <div class="d-flex  align-center pl-4 mb-2" v-if="drawer" >
-          <div class="w-auto mr-4 font-weight-black " style="font-size: 12px;">Clientes</div>
-          <div class="w-50" ><hr></div>
+        <div class="d-flex  align-center pl-4 mb-2"  >
+          <div class="w-auto mr-4 font-weight-black " style="font-size: 12px;" v-if="drawer">Clientes</div>
+          <div class="w-75" ><hr></div>
         </div>
 
         <v-list-item
@@ -67,9 +65,9 @@
         <v-list-title v-if="drawer" >{{ text }}</v-list-title>
       </v-list-item>
 
-      <div class="d-flex  align-center pl-4 my-4" v-if="drawer" >
-          <div class="w-auto mr-4 font-weight-black " style="font-size: 12px;">Serviços e Produtos</div>
-          <div class="w-25" ><hr></div>
+      <div class="d-flex  align-center pl-4 my-4"  >
+          <div class="w-auto mr-4 font-weight-black " style="font-size: 12px;" v-if="drawer">Serviços</div>
+          <div class="w-75" ><hr></div>
         </div>
 
         <v-list-item
@@ -103,6 +101,24 @@
 
 
       </v-list-group>
+
+      <div class="d-flex  align-center pl-4 mb-2 mt-4"  >
+          <div class="w-auto mr-4 font-weight-black " style="font-size: 12px;" v-if="drawer">Ajuda</div>
+          <div class="w-75" ><hr></div>
+        </div>
+
+        <v-list-item
+          prepend-icon="mdi-help-circle-outline"
+          link
+          class="text-caption"
+          
+        >
+        <v-list-title v-if="drawer" >Chamado e Ajuda</v-list-title>
+      </v-list-item>
+
+      <v-list-item prepend-icon="mdi-exit-run" class="mt-4" link>
+        <v-list-title v-if="drawer" >Sair</v-list-title>
+      </v-list-item>
     
       </v-list>
       </v-navigation-drawer>
@@ -135,5 +151,7 @@ const relatorio=  ['Instalações Eletricas', 'Sistemas de Fluidos Gasosos', 'Me
 
 
 </script>
+
+
 
   
