@@ -1,5 +1,5 @@
 <template>
-    <v-card elevation="10" height="500" class="pa-2" color="grey-lighten-2">
+    <v-card height="500" class="pa-2 " >
         <v-card-item>
         <v-card-title class="d-flex align-center pe-2 font-weight-black text-h6">
         Lista de Usuários
@@ -13,7 +13,7 @@
 
         <v-card-item>
         <v-row>
-            <v-col cols="6">
+            <v-col cols="4">
                 <v-text-field
                     v-model="search"
                     prepend-inner-icon="mdi-magnify"
@@ -23,7 +23,7 @@
                     flat
                     hide-details
                     size="small"
-                    variant="solo-filled"
+                    variant="outlined"
                 
                 ></v-text-field>
             </v-col>
@@ -64,7 +64,7 @@
                 :headers="headers"
                 :items="usersi"
                 :search="search"
-                :sort-by="[{ key: 'nome', order: 'asc' }]"
+                
                 height="270"
                 hover
                 fixed-header
@@ -83,16 +83,19 @@
             <template v-slot:item.funcao="{ item }" >
                 <v-text>admin</v-text>
             </template>-->
+            <template v-slot:item.idPerfil="{ item }" >
+                <v-text>P{{ item.idPerfil }}</v-text>
+            </template>
             <template v-slot:item.ativoInativo="{ item }" >
                 <v-switch readonly :model-value="item.ativoInativo == 'A'?true:false" :color="item.ativoInativo == 'A'?'success':'error'"></v-switch>
             </template>
 
-            <template v-slot:item.dataRegistro="{ item }" >
+            <!--<template v-slot:item.dataRegistro="{ item }" >
                 <v-text>{{ formatarData(item.dataRegistro) }}</v-text>
             </template>
             <template v-slot:item.dataAtualizacao="{ item }" >
                 <v-text>{{ formatarData(item.dataAtualizacao) }}</v-text>
-            </template>
+            </template>-->
 
             <template v-slot:item.actions="{ item }">
                 
@@ -149,10 +152,10 @@
         { key: 'login', title: 'Login' },
         { key: 'email', title: 'E-mail' },
         { key: 'telefone', title: 'telefone',},     
-        { key: 'idPerfil', title: 'Função',},
+        { key: 'idPerfil', title: 'Cargo',},
         { key: 'ativoInativo', title: 'status',},
-        { key: 'dataRegistro', title: 'Cadastrado', },
-        { key: 'dataAtualizacao', title: 'Ult.Atualização', },
+        //{ key: 'dataRegistro', title: 'Cadastrado', },
+       // { key: 'dataAtualizacao', title: 'Ult.Atualização', },
         { key: 'actions', title: '',  },
 
     ]

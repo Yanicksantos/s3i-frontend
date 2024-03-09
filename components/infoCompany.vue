@@ -1,5 +1,5 @@
 <template>
-    <div class=" w-100 mb-2  rounded-sm bg-grey-lighten-5 pa-2" style="height: 200px;">
+    <div class=" w-100 mb-2  rounded-sm bg-teal pa-2 elevation-2" style="height: 200px;">
            
     </div>
 </template>
