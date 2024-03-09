@@ -84,7 +84,9 @@
                 <v-text>admin</v-text>
             </template>-->
             <template v-slot:item.idPerfil="{ item }" >
-                <v-text>P{{ item.idPerfil }}</v-text>
+                <v-chip variant="outlined" :color="item.idPerfil==2? 'green-darken-4':'yellow-accent-4'"  size="small">
+                    P{{ item.idPerfil }}
+                </v-chip>
             </template>
             <template v-slot:item.ativoInativo="{ item }" >
                 <v-switch readonly :model-value="item.ativoInativo == 'A'?true:false" :color="item.ativoInativo == 'A'?'success':'error'"></v-switch>
