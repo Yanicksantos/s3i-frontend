@@ -110,7 +110,7 @@
             <template v-slot:item.actions="{ item }">
                 
                 <div class="d-flex justify-end">
-                    <v-btn icon="mdi-chevron-right" variant="text"></v-btn>
+                   <detalhes />
                 <!--<update :IdUser="item.id" :Username="item.name" :Useremail="item.email" Userbirthdate='2024-02-21T18:40:03.487Z'/>
 
                 <delete :IdUser="item.id" :Username="item.name" />-->

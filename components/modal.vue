@@ -112,7 +112,7 @@
               sm="6"
             >
             <v-text-field
-                label="Confirm Password*"
+                label="Senha*"
                 type="password"
                 required
               ></v-text-field>
@@ -123,9 +123,10 @@
               sm="6"
             >
             <v-text-field
-                label="Confirm Password*"
+                label="Confirmar Senha*"
                 type="password"
                 required
+                disabled
               ></v-text-field>
             </v-col>
             <v-col
