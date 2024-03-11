@@ -1,7 +1,7 @@
 <template>
   <div class="">
 
-    <v-dialog v-model="dialog" persistent width="400">
+    <v-dialog v-model="dialog" persistent width="900">
       <template v-slot:activator="{ props }">
         <v-btn
           v-bind="props"
@@ -13,6 +13,161 @@
           Novo Usuario
         </v-btn>
       </template>
+
+
+
+      
+      <v-card
+        prepend-icon="mdi-account"
+        title="Adicionar Usuário"
+      >
+        <v-card-text class="pt-10">
+          <v-row dense>
+            <v-col
+              cols="12"
+              md="4"
+              sm="6"
+              
+            >
+              <v-text-field
+                label="Nome*"
+                required
+                variant="outlined"
+                density="compact"
+              ></v-text-field>
+            </v-col>
+
+            <v-col
+              cols="12"
+              md="4"
+              sm="6"
+            >
+              <v-text-field
+                label="Login*"
+                variant="outlined"
+                density="compact"
+                required
+
+              ></v-text-field>
+            </v-col>
+
+            <v-col
+              cols="12"
+              md="4"
+              sm="6"
+            >
+            <v-text-field
+                label="Email*"
+                variant="outlined"
+                density="compact"
+                required
+              ></v-text-field>
+        
+             
+            </v-col>
+
+            <v-col
+              cols="12"
+              md="2"
+              sm="6"
+            >
+            <v-autocomplete
+                :items="['P2', 'P3', 'P4', 'P5', 'P6']"
+                label="Perfil*"
+                variant="outlined"
+                density="compact"
+              ></v-autocomplete>
+            </v-col>
+
+            <v-col
+              cols="12"
+              md="4"
+              sm="6"
+            >
+            <v-text-field
+                label="Telefone"
+                variant="outlined"
+                density="compact"
+              ></v-text-field>
+            </v-col>
+
+            <v-col
+              cols="12"
+              md="6"
+              sm="6"
+            >
+            <v-autocomplete
+                :items="['Equipe Geral', 'Equipe Instalação Elétrica', 'Equipe de Mnautenção Mecânica', 'Equipe de Teste']"
+                label="Equipe"
+                variant="outlined"
+                density="compact"
+                disabled
+              ></v-autocomplete>
+              
+            </v-col>
+ 
+
+            <v-col
+              cols="12"
+              sm="6"
+            >
+            <v-text-field
+                label="Confirm Password*"
+                type="password"
+                required
+              ></v-text-field>
+            </v-col>
+
+            <v-col
+              cols="12"
+              sm="6"
+            >
+            <v-text-field
+                label="Confirm Password*"
+                type="password"
+                required
+              ></v-text-field>
+            </v-col>
+            <v-col
+              cols="12"
+              md="3"
+              sm="6"
+            >
+            <v-autocomplete
+                :items="['Ativo', 'Desativado']"
+                label="Status"
+                variant="outlined"
+                density="compact"
+              ></v-autocomplete>
+              
+            </v-col>
+          </v-row>
+
+          <small class="text-caption text-medium-emphasis">* Indica campo Obrigatório</small>
+        </v-card-text>
+
+        <v-divider></v-divider>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+
+          <v-btn
+            text="Cancelar"
+            variant="plain"
+            @click="dialog = false"
+          ></v-btn>
+
+          <v-btn
+            color="primary"
+            text="Salvar"
+            variant="tonal"
+            @click="dialog = false"
+          ></v-btn>
+        </v-card-actions>
+      </v-card>
+
+
+      <!--
       <v-card>
         <v-card-item>
           <v-card-title>
@@ -43,7 +198,7 @@
                 density="compact"
               ></v-text-field>
 
-              <!--<v-select
+              <v-select
                 v-model="cargo"
                 label="Cargo"
                 :items="['Administrador', 'Analista', 'Assistente', 'Auxiliar']"
@@ -51,7 +206,7 @@
                 :rules="[required]"
                 variant="outlined"
                 density="compact"
-              ></v-select>-->
+              ></v-select>
 
               <v-text-field
                 v-model="selectedDate"
@@ -86,7 +241,7 @@
             </v-form>
           </v-card-text>
         </v-card-item>
-      </v-card>
+      </v-card>-->
     </v-dialog>
   </div>
 </template>

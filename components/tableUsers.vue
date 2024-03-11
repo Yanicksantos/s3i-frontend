@@ -2,10 +2,18 @@
     <v-card height="500" class="pa-2 " >
         <v-card-item>
         <v-card-title class="d-flex align-center pe-2 font-weight-black text-h6">
-        Lista de Usuários
-
+        Lista de Usuários  
+        <v-tooltip text="Atualizar">
+            <template v-slot:activator="{ props }">
+                <v-btn 
+                @click="refresh"  size="small"  color="#1A237E" variant="text"   icon="mdi-refresh" class="ml-4"
+                v-bind="props"
+                ></v-btn>
+            </template>
+        </v-tooltip>
         <v-spacer></v-spacer>
-        <modal/>
+            <modal/>
+     
        
         </v-card-title>
 
@@ -65,7 +73,7 @@
                 :items="usersi"
                 :search="search"
                 
-                height="270"
+                height="300"
                 hover
                 fixed-header
         
@@ -102,23 +110,17 @@
             <template v-slot:item.actions="{ item }">
                 
                 <div class="d-flex justify-end">
-                <update :IdUser="item.id" :Username="item.name" :Useremail="item.email" Userbirthdate='2024-02-21T18:40:03.487Z'/>
+                    <v-btn icon="mdi-chevron-right" variant="text"></v-btn>
+                <!--<update :IdUser="item.id" :Username="item.name" :Useremail="item.email" Userbirthdate='2024-02-21T18:40:03.487Z'/>
 
-                <delete :IdUser="item.id" :Username="item.name" />
+                <delete :IdUser="item.id" :Username="item.name" />-->
 
                
                 </div>
             </template>
           
             
-            </v-data-table-virtual>
-            <v-card-actions >
-            
-                
-                <v-btn @click="refresh"   color="#1A237E" variant="flat"   prepend-icon="mdi-refresh" class="px-6 mt-2">Atualizar</v-btn>
-
-            </v-card-actions>
-            
+            </v-data-table-virtual>   
         </v-card-item>
 
     </v-card>

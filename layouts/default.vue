@@ -40,7 +40,8 @@
 
     <v-navigation-drawer       
       :width="drawer?'300':'70'"
-      class="pt-6"
+      class="pt-6 pb-4
+       "
       
     >
        
