@@ -39,7 +39,7 @@
 
             <v-col
               cols="12"
-              md="4"
+              md="3"
               sm="6"
             >
               <v-text-field
@@ -53,7 +53,7 @@
 
             <v-col
               cols="12"
-              md="4"
+              md="5"
               sm="6"
             >
             <v-text-field

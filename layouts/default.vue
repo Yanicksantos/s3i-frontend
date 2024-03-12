@@ -47,7 +47,7 @@
        
       <v-list>
         <v-list-item prepend-icon="mdi-home-account" class="mb-6" link >
-          <v-list-item-title v-if="drawer" >Home</v-list-item-title>
+          <v-list-item-title v-if="drawer" > <nuxt-link to="/">Home</nuxt-link> </v-list-item-title>
         </v-list-item>
 
         <div class="d-flex  align-center pl-4 mb-2"  >
