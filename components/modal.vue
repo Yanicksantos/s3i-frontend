@@ -6,8 +6,8 @@
         <v-btn
           v-bind="props"
           prepend-icon="mdi-plus"
-          color="#4CAF50"
           class="px-4 ml-4 mt-6"
+          color="teal-darken-4" 
           variant="flat"
         >
           Novo Usuario
