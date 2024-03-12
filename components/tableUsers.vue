@@ -143,7 +143,6 @@
     headers: {
         "content-type": "application/json"
     },
-    lazy: true
     });
 
     const formatarData = (data) => {
