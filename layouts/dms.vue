@@ -1,14 +1,17 @@
 <template>
     <v-app >
       <v-app-bar class="bg-índigo-escurecer-4" color="#1A237E">
-       <v-app-bar-title class="text-h4">
-        <v-btn variant="text" prepend-icon="mdi-exit-run" to="/usuarios">Sair</v-btn>
+       <v-app-bar-title >  
+            <v-list class="d-flex bg-transparent">
+                <v-list-item><v-btn icon="mdi-menu" variant="text" @click="drawer = !drawer"></v-btn></v-list-item>
+            <v-list-item>DM253</v-list-item>
+            </v-list> 
+          
        </v-app-bar-title>
        <template #append>
             <v-list class="d-flex bg-transparent">
                 <v-list-item><v-btn icon="mdi-help-circle-outline" variant="text"></v-btn></v-list-item>
-                <v-list-item><v-btn icon="mdi-menu" variant="text" @click="drawer = !drawer"></v-btn></v-list-item>
-                <v-list-item>DM253</v-list-item>
+                <v-list-item><v-btn variant="text" prepend-icon="mdi-exit-run" to="/usuarios">Sair</v-btn></v-list-item>
             </v-list>   
        </template>
       </v-app-bar>
@@ -17,7 +20,7 @@
       :width="drawer?'300':'70'"
       class="pt-2 pb-2"
       v-model="drawer"
-        temporary
+      temporary
     >
        
       <v-list>

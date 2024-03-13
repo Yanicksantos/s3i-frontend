@@ -9,14 +9,15 @@
                     
             </v-col>
 
+            <v-spacer></v-spacer>
             <v-col cols="4">
-                <v-card variant="outlined" height="135" elevation="4">
-                    
-                </v-card>
-                
+               
+                    <div style="position: relative; border: 1px solid black;" class="w-100 h-100 rounded elevation-4 ">
+                        <p style="position: absolute;  top: -10px; z-index: 1; left: 20px;" class=" text-caption bg-white px-2">Escopo</p>
+                    </div>
             </v-col>
 
-            <v-col cols="3"  >
+           <!-- <v-col cols="3"  >
                 <v-card  height="135" elevation="4" variant="outlined">
                     <v-space></v-space>
                     <v-card-text>
@@ -49,43 +50,44 @@
                     
                 </v-card>
                 
-            </v-col>
+            </v-col>-->
 
             <v-col cols="3"  >
-                <v-card variant="outlined"  elevation="4" height="135">
-                        
-                </v-card>
+                <div style="position: relative; border: 1px solid black;" class="w-100 h-100 rounded elevation-4 ">
+                        <p style="position: absolute;  top: -10px; z-index: 1; left: 20px;" class="bg-white px-2 text-caption">Responsaveis Técnicos</p>
+                </div>
                 
             </v-col>
 
         </v-row>
         <v-row>
-            <v-col cols="12">
-            <v-card height="350" variant="outlined">
-                <v-row class="px-4 pb-2 pt-8 ">
-            
-                    <v-col cols="3">
-                        <v-card height="300" variant="outlined" elevation="6">
-
-                        </v-card>
-
-                    </v-col>
-                        <v-col cols="6">
-                        <v-card height="300" variant="outlined" elevation="6">
-
-                        </v-card>
-
-                    </v-col>
+            <v-col cols="12">                
+                <div style="position: relative; border: 1px solid black; height: 350px;" class="w-100 rounded elevation-4 ">
+                    <p style="position: absolute;  top: -10px; z-index: 1; left: 20px;" class="bg-white px-2 text-caption">Relatórios Estáticos</p>
+                    
+                    <v-row class="px-4 pb-2 pt-8 ">
+                
                         <v-col cols="3">
-                        <v-card height="300" variant="outlined" elevation="6">
+                            <div style="position: relative; border: 1px solid black; height: 300px;" class="w-100  elevation-4 ">
+                                <p style="position: absolute;  top: -10px; z-index: 1; left: 20px;" class="bg-white px-2 text-caption">Situação da Inspeção</p>
+                            </div>
+                        </v-col>
 
-                        </v-card>
 
-                    </v-col>
-                </v-row>
+                        <v-col cols="6">
+                            <div style="position: relative; border: 1px solid black; height: 300px;" class="w-100   elevation-4 ">
+                                <p style="position: absolute;  top: -10px; z-index: 1; left: 20px;" class="bg-white px-2 text-caption">Perigômetro</p>
+                            </div>
+                        </v-col>
 
-            </v-card>
+                        <v-col cols="3">
+                            <div style="position: relative; border: 1px solid black; height: 300px;" class="w-100   elevation-4 ">
+                                <p style="position: absolute;  top: -10px; z-index: 1; left: 20px;" class="bg-white px-2 text-caption">Situação das anomalias</p>
+                            </div>
 
+                        </v-col>
+                    </v-row>
+                </div>  
             </v-col>
         </v-row>
 
