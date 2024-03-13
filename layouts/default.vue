@@ -96,8 +96,9 @@
             v-for="(title, i) in relatorio"
             :key="i"
             class="text-caption"
+            href="/DM253"
           >
-          <v-list-item-title class="text-caption">{{ title }}</v-list-item-title>
+          <v-btn variant="plain" :text="title" to="/DM253" class="text-body-2 font-weight-regular"></v-btn>
         </v-list-item>
 
 
