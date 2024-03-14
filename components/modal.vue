@@ -21,6 +21,7 @@
         prepend-icon="mdi-account"
         title="Adicionar Usuário"
       >
+      <v-form  @submit.prevent="onSubmit">
         <v-card-text class="pt-10">
           <v-row dense>
             <v-col
@@ -168,10 +169,12 @@
             color="primary"
             text="Salvar"
             variant="tonal"
+            :loading="loading"
             :disabled="!validateForm()"
             @click="onSubmit"
           ></v-btn>
         </v-card-actions>
+      </v-form>
       </v-card>
 
     </v-dialog>
@@ -187,6 +190,8 @@
         title="Atualização de Usuário"
         text="Usuario adicionado com sucesso"
         color="green-darken-3"
+        density="compact"
+        size="small"
       >
         <v-card-actions>
           <v-spacer></v-spacer>
@@ -198,56 +203,104 @@
           ></v-btn>
         </v-card-actions>
          
- 
+      
       </v-card>
     </v-dialog>
   </div>
 </template>
+<script setup>
+import { ref } from 'vue';
+import { format } from 'date-fns';
 
-<script>
-export default {
-  data: () => ({
-    dialog: false,
-    email: '',
-    senha: '',
-    ConfirmarSenha: '',
-    nome: '',
-    login: '',
-    telefone: '',
-    perfil: 'P2',
-    dialog2: true,
-    status: ''
-  }),
+const dialog = ref(false);
+const email = ref('');
+const senha = ref('');
+const ConfirmarSenha = ref('');
+const nome = ref('');
+const login = ref('');
+const telefone = ref('');
+const perfil = ref('P2');
+const dialog2 = ref(false);
+const status = ref('');
+const loading = ref(false);
 
-  methods: {
-    onSubmit() {
-   
-      this.dialog2 = true;
-    },
+const onSubmit = () => {
+  //if (!validateForm()) return;
 
-    emailRule(value) {
-      return /^\S+@\S+\.\S+$/.test(value) || 'Endereço de e-mail inválido.';
-    },
+  //loading.value = true
 
-    ConfirmarSenhaRule(value) {
-      if (value !== this.senha) {
-        return 'A senha confirmada não corresponde à senha principal.';
-      }
-      return true;
-    },
+  /*const userapi = {
+    idCliente:2,
+    idPerfil:mapPerfilValue(perfil.value),
+    idEquipe: 1,
+    login:login.value,
+    senha: senha.value,
+    name: nome.value,
+    telefone:telefone.value,
+    email: email.value,
+    ativoInativo: mapstatusValue(status.value),  
+    dataRegistro: formatarData (Date.now()),
+    dataAtualizacao: formatarData (Date.now())
+  };*/
 
-    validateForm() {
-      return (
-        this.emailRule(this.email) &&
-        this.nome.trim() !== '' &&
-        this.login.trim() !== '' &&
-        this.senha.length >= 4 &&
-        this.ConfirmarSenha !== '' &&
-        this.perfil !== '' &&
-        this.status !== '' &&
-        this.ConfirmarSenhaRule(this.ConfirmarSenha)
-      );
-    },
+
+  dialog2.value = true;
+};
+
+const emailRule = (value) => {
+  return /^\S+@\S+\.\S+$/.test(value) || 'Endereço de e-mail inválido.';
+};
+
+const ConfirmarSenhaRule = (value) => {
+  if (value !== senha.value) {
+    return 'A senha confirmada não corresponde à senha principal.';
+  }
+  return true;
+};
+
+const validateForm = () => {
+  return (
+    emailRule(email.value) &&
+    nome.value.trim() !== '' &&
+    login.value.trim() !== '' &&
+    senha.value.length >= 4 &&
+    ConfirmarSenha.value !== '' &&
+    perfil.value !== '' &&
+    status.value !== '' &&
+    ConfirmarSenhaRule(ConfirmarSenha.value)
+  );
+};
+
+const mapPerfilValue = (value) => {
+  switch (value) {
+    case 'P2':
+      return 2;
+    case 'P3':
+      return 3;
+    case 'P4':
+      return 4;
+    case 'P5':
+      return 5;
+    case 'P6':
+      return 6;
+    default:
+      return 1;
   }
 }
+
+const mapstatusValue = (value) =>{
+  switch (value) {
+    case 'Ativo':
+      return 'A';
+    case 'Desativado':
+      return 'D';
+    default:
+      return 'A';
+  }
+}
+
+const formatarData = (data) => {
+      return format(new Date(data), 'yyyy-MM-ddT00:00:00.000Z');
+};
+
 </script>
