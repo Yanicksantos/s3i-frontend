@@ -27,9 +27,9 @@
               cols="12"
               md="4"
               sm="6"
-              
             >
               <v-text-field
+                v-model="nome"
                 label="Nome*"
                 required
                 variant="outlined"
@@ -43,11 +43,11 @@
               sm="6"
             >
               <v-text-field
+                v-model="login"
                 label="Login*"
                 variant="outlined"
                 density="compact"
                 required
-
               ></v-text-field>
             </v-col>
 
@@ -56,27 +56,14 @@
               md="5"
               sm="6"
             >
-            <v-text-field
+              <v-text-field
+                v-model="email"
                 label="Email*"
                 variant="outlined"
                 density="compact"
                 required
+                :rules="[emailRule]"
               ></v-text-field>
-        
-             
-            </v-col>
-
-            <v-col
-              cols="12"
-              md="2"
-              sm="6"
-            >
-            <v-autocomplete
-                :items="['P2', 'P3', 'P4', 'P5', 'P6']"
-                label="Perfil*"
-                variant="outlined"
-                density="compact"
-              ></v-autocomplete>
             </v-col>
 
             <v-col
@@ -84,7 +71,8 @@
               md="4"
               sm="6"
             >
-            <v-text-field
+              <v-text-field
+                v-model="telefone"
                 label="Telefone"
                 variant="outlined"
                 density="compact"
@@ -93,25 +81,39 @@
 
             <v-col
               cols="12"
+              md="2"
+              sm="6"
+            >
+              <v-autocomplete
+                :items="['P2', 'P3', 'P4', 'P5', 'P6']"
+                label="Perfil*"
+                variant="outlined"
+                density="compact"
+                v-model="perfil"
+                required
+              ></v-autocomplete>
+            </v-col>
+
+            <v-col
+              cols="12"
               md="6"
               sm="6"
             >
-            <v-autocomplete
-                :items="['Equipe Geral', 'Equipe Instalação Elétrica', 'Equipe de Mnautenção Mecânica', 'Equipe de Teste']"
+              <v-autocomplete
+                :items="['Equipe Geral', 'Equipe Instalação Elétrica', 'Equipe de Manutenção Mecânica', 'Equipe de Teste']"
                 label="Equipe"
                 variant="outlined"
                 density="compact"
-                disabled
+                :disabled="perfil == 'P2'"
               ></v-autocomplete>
-              
             </v-col>
- 
 
             <v-col
               cols="12"
               sm="6"
             >
-            <v-text-field
+              <v-text-field
+                v-model="senha"
                 label="Senha*"
                 type="password"
                 required
@@ -122,25 +124,29 @@
               cols="12"
               sm="6"
             >
-            <v-text-field
+              <v-text-field
+                v-model="ConfirmarSenha"
                 label="Confirmar Senha*"
                 type="password"
                 required
-                disabled
+                :disabled="senha.length < 4"
+                :rules="[ConfirmarSenhaRule]"
               ></v-text-field>
             </v-col>
+
             <v-col
               cols="12"
               md="3"
               sm="6"
             >
-            <v-autocomplete
+              <v-autocomplete
                 :items="['Ativo', 'Desativado']"
                 label="Status"
                 variant="outlined"
                 density="compact"
+                required
+                v-model="status"
               ></v-autocomplete>
-              
             </v-col>
           </v-row>
 
@@ -162,172 +168,86 @@
             color="primary"
             text="Salvar"
             variant="tonal"
-            @click="dialog = false"
+            :disabled="!validateForm()"
+            @click="onSubmit"
           ></v-btn>
         </v-card-actions>
       </v-card>
 
+    </v-dialog>
 
-      <!--
-      <v-card>
-        <v-card-item>
-          <v-card-title>
-            <h4 class="text-h5 mb-8">Adicionar Usuário</h4>
-          </v-card-title>
-
-          <v-card-text>
-            <v-form v-model="form" @submit.prevent="onSubmit">
-              <v-text-field
-                v-model="nome"
-                :readonly="loading"
-                :rules="[required]"
-                class="mb-2 mt-4"
-                label="Nome*"
-                variant="outlined"
-                density="compact"
-              ></v-text-field>
-
-              <v-text-field
-                v-model="email"
-                :readonly="loading"
-                :rules="[required, emailRule]"
-                type="email"
-                required
-                class="mb-2"
-                label="E-mail*"
-                variant="outlined"
-                density="compact"
-              ></v-text-field>
-
-              <v-select
-                v-model="cargo"
-                label="Cargo"
-                :items="['Administrador', 'Analista', 'Assistente', 'Auxiliar']"
-                :readonly="loading"
-                :rules="[required]"
-                variant="outlined"
-                density="compact"
-              ></v-select>
-
-              <v-text-field
-                v-model="selectedDate"
-                label="Aniversário*"
-                type="date"
-                :readonly="loading"
-                :rules="[required]"
-                variant="outlined"
-                density="compact"
-                class="mb-4"
-              ></v-text-field>
-
-              <v-card-actions>
-                <v-btn
-                  variant="flat"
-                  @click="dialog = false"
-                  color="#B71C1C"
-                >
-                  Cancelar
-                </v-btn>
-                <v-btn
-                  :disabled="!form || !validEmail"
-                  :loading="loading"
-                  size="large"
-                  type="submit"
-                  variant="flat"
-                  color="blue-darken-1"
-                >
-                  Salvar
-                </v-btn>
-              </v-card-actions>
-            </v-form>
-          </v-card-text>
-        </v-card-item>
-      </v-card>-->
+    <v-dialog
+      v-model="dialog2"
+      width="auto"
+    >
+    
+      <v-card
+        width="400"
+        prepend-icon="mdi-check-circle"
+        title="Atualização de Usuário"
+        text="Usuario adicionado com sucesso"
+        color="green-darken-3"
+      >
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            text="Ok"
+            @click="dialog2 = false"
+            variant="text"
+            size="small"
+          ></v-btn>
+        </v-card-actions>
+         
+ 
+      </v-card>
     </v-dialog>
   </div>
 </template>
 
 <script>
- import { format } from 'date-fns';
 export default {
-   data: () => ({
+  data: () => ({
     dialog: false,
-    form: false,
-    email: null,
-    password: null,
-    loading: false,
-    selectedDate: '',
+    email: '',
+    senha: '',
+    ConfirmarSenha: '',
     nome: '',
-    cargo: '',
-    validEmail: true,
+    login: '',
+    telefone: '',
+    perfil: 'P2',
+    dialog2: true,
+    status: ''
   }),
 
   methods: {
- 
-   async onSubmit() {
-      if (!this.form || !this.validateForm()) return;
-
-      this.loading = true;
-
+    onSubmit() {
    
-      var dataFormatada = this.selectedDate;
-
-      // Dividir a string para obter os componentes de dia, mês e ano
-      var partes = dataFormatada.split('-');
-      var ano = partes[0];
-      var mes = partes[1];
-      var dia = partes[2];
-
-      // Construir a string no formato "yyyy-mm-ddTHH:mm:ss.SSSZ"
-      var dataConvertida = ano + '-' + mes + '-' + dia + 'T00:00:00.000Z';
-
-    
-
-
-    const userapi = {
-      name: this.nome,
-      email: this.email,
-      birthdate: dataConvertida
-    };
-    
-    const { data, pending } = await useFetch('https://usuarioapi.up.railway.app/api/Users/Insert', {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json',
-      },
-      body: JSON.stringify(userapi),
-      lazy: true,
-      server: false,
-    });
-
-    this.nome ='',
-    this.email ='',
-    this.selectedDate = '',
-  
-    this.loading = false;
-  
-      this.dialog = false;
-          alert("Usuario Adicionado com sucesso!");
-
-      
+      this.dialog2 = true;
     },
 
-    
-    required(v) {
-      return !!v || '';
+    emailRule(value) {
+      return /^\S+@\S+\.\S+$/.test(value) || 'Endereço de e-mail inválido.';
     },
-    emailRule(v) {
-      this.validEmail = /^\S+@\S+\.\S+$/.test(v);
-      return this.validEmail || 'E-mail inválido.';
+
+    ConfirmarSenhaRule(value) {
+      if (value !== this.senha) {
+        return 'A senha confirmada não corresponde à senha principal.';
+      }
+      return true;
     },
+
     validateForm() {
       return (
-        this.required(this.nome) &&
-        this.required(this.email) &&
         this.emailRule(this.email) &&
-        this.required(this.selectedDate)
+        this.nome.trim() !== '' &&
+        this.login.trim() !== '' &&
+        this.senha.length >= 4 &&
+        this.ConfirmarSenha !== '' &&
+        this.perfil !== '' &&
+        this.status !== '' &&
+        this.ConfirmarSenhaRule(this.ConfirmarSenha)
       );
     },
-  },
-};
+  }
+}
 </script>

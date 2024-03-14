@@ -98,7 +98,7 @@
             class="text-caption"
             href="/DM253"
           >
-          <v-btn variant="plain" :text="title" to="/DM253" class="text-body-2 font-weight-regular"></v-btn>
+          <v-btn variant="plain" :text="title" to="/DM253" class="text-caption font-weight-regular"></v-btn>
         </v-list-item>
 
 
