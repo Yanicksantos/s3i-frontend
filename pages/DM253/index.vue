@@ -2,8 +2,8 @@
 <div class="h-100 mt-16 px-4">
 
         <v-row  class="mt-1">
-            <v-col cols="2" >
-                <v-card height="135" flat>
+            <v-col cols="4" >
+                <v-card height="135" flat >
                     <img src="~/assets/logo.jpeg" alt="" class="obj h-100 w-100">
                 </v-card>
                     
@@ -52,7 +52,7 @@
                 
             </v-col>-->
 
-            <v-col cols="3"  >
+            <v-col cols="4"  >
                 <div style="position: relative; border: 1px solid black;" class="w-100 h-100 rounded elevation-4 ">
                         <p style="position: absolute;  top: -10px; z-index: 1; left: 20px;" class="bg-white px-2 text-caption">Responsaveis Técnicos</p>
                 </div>
@@ -60,6 +60,7 @@
             </v-col>
 
         </v-row>
+        
         <v-row>
             <v-col cols="12">                
                 <div style="position: relative; border: 1px solid black; height: 350px;" class="w-100 rounded elevation-4 ">

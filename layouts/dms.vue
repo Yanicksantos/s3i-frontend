@@ -18,7 +18,7 @@
       
     <v-navigation-drawer       
       :width="drawer?'300':'70'"
-      class="pt-2 pb-2"
+      class="pt-2 pb-2 px-2"
       v-model="drawer"
       temporary
     >
@@ -26,7 +26,19 @@
       <v-list>
         <v-list-item class="mb-4" prepend-icon="mdi-home-account">
          <v-btn variant="plain" text="Home" to="/DM253" class="text-body-2 font-weight-regular"></v-btn>
+        
         </v-list-item>
+
+
+
+
+
+
+
+
+
+
+
 
         <div class="d-flex  align-center pl-4 mb-2"  >
           <div class="w-auto mr-4 font-weight-black " style="font-size: 12px;" v-if="drawer">Banco</div>
@@ -86,6 +98,20 @@
 
 
 
+      
+      <div class="d-flex  align-center pl-4 mb-2"  >
+          <div class="w-auto mr-4 font-weight-black " style="font-size: 12px;" v-if="drawer">Local de Instalação</div>
+          <div class="w-75" ><hr></div>
+        </div>
+
+        <v-list-item
+        prepend-icon="mdi-home-group-plus"
+        class="text-caption"
+        >
+        <v-btn variant="plain" text="Cadastrar"  class="text-body-2 font-weight-regular"></v-btn>
+      </v-list-item>
+
+
 
 
       <div class="d-flex  align-center pl-4 my-4"  >
@@ -94,7 +120,7 @@
         </div>
 
         <v-list-item
-          v-for="[icon, text, to] in links2"
+          v-for="[icon, text, to] in links"
           :key="icon"
           :prepend-icon="icon"
           link
@@ -148,7 +174,7 @@ const drawer = ref(false)
 
 
 
-const links2 = [
+const links = [
   ['mdi-account-search', 'Cadastrar', '/DM253/planejamento'],
   ['mdi-text-search-variant', 'Listar', '/DM253/planejamento'],
 ]
