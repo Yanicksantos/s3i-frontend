@@ -1,8 +1,9 @@
 <template>
     <div class="mt-16">
         <v-container>
-        <v-btn prepend-icon="mdi-arrow-left-circle" to="/DM253" variant="text">Voltar</v-btn>
+        <v-btn prepend-icon="mdi-arrow-left-circle" to="/DM253" variant="plain" color="red-darken-4">Voltar</v-btn>
         <h1 class="text-h3 mt-4 mb-10 font-weight-bold text-cyan-darken-4" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Planejamento da inspeção</h1>
+        
         <div class="h-100  bg-grey-lighten-3 pa-8 rounded-lg">
 
         <!--CLIENTES-->
@@ -40,12 +41,17 @@
                             variant="outlined"
                             density="compact"
                             clearable
+                            hide-details
+                            single-line
                             ></v-autocomplete>
                         </v-col>
                          
                         <v-col cols="4">
                             <p class="text-caption mb-4">CREA/CFT</p>
-                            <v-text-field label="CREA/CFT" variant="outlined" density="compact"></v-text-field>
+                            <v-text-field label="CREA/CFT" variant="outlined" density="compact"
+                            hide-details
+                            single-line
+                            ></v-text-field>
                         </v-col>
                     </v-row>             
 
@@ -62,12 +68,18 @@
                             variant="outlined"
                             density="compact"
                             clearable
+                            hide-details
+                            single-line
                             ></v-autocomplete>
                         </v-col>
                          
                         <v-col cols="4">
                             <p class="text-caption mb-4">CREA/CFT</p>
-                            <v-text-field label="CREA/CFT" variant="outlined" density="compact"></v-text-field>
+                            <v-text-field 
+                            label="CREA/CFT" variant="outlined" density="compact" 
+                            hide-details
+                            single-line
+                            ></v-text-field>
                         </v-col>
                     </v-row>             
 

@@ -72,54 +72,36 @@
                 :headers="headers"
                 :items="usersi"
                 :search="search"
-                
+                density="compact"
+                size="x-small"
                 height="300"
                 hover
                 fixed-header
+                class="text-caption"
         
             
             >
-            <!--<template v-slot:item.id="{ item }"  class="d-none">
-                <v-text>userteste01</v-text>
-            </template>
-            <template v-slot:item.login="{ item }" >
-                <v-text>userteste01</v-text>
-            </template>
-            <template v-slot:item.telefone="{ item }" >
-                <v-text>(27) 981767293</v-text>
-            </template>
-            <template v-slot:item.funcao="{ item }" >
-                <v-text>admin</v-text>
-            </template>-->
+        
             <template v-slot:item.idPerfil="{ item }" >
                 <v-chip variant="outlined" :color="item.idPerfil==2? 'green-darken-4':'yellow-accent-4'"  size="small">
                     P{{ item.idPerfil }}
                 </v-chip>
             </template>
+
             <template v-slot:item.ativoInativo="{ item }" >
-                <v-switch readonly :model-value="item.ativoInativo == 'A'?true:false" :color="item.ativoInativo == 'A'?'success':'error'"></v-switch>
+                <v-chip  :text="item.ativoInativo=='A'? 'Ativo':'Inativo'" variant="outlined" :color="item.ativoInativo=='A'? 'green-darken-4':'red-accent-4'"  size="small" ></v-chip>
             </template>
 
-            <!--<template v-slot:item.dataRegistro="{ item }" >
-                <v-text>{{ formatarData(item.dataRegistro) }}</v-text>
-            </template>
-            <template v-slot:item.dataAtualizacao="{ item }" >
-                <v-text>{{ formatarData(item.dataAtualizacao) }}</v-text>
-            </template>-->
 
-            <template v-slot:item.actions="{ item }">
-                
+            <template v-slot:item.actions="{ item }">             
                 <div class="d-flex justify-end">
                    <detalhes />
                 <!--<update :IdUser="item.id" :Username="item.name" :Useremail="item.email" Userbirthdate='2024-02-21T18:40:03.487Z'/>
 
                 <delete :IdUser="item.id" :Username="item.name" />-->
-
-               
                 </div>
-            </template>
-          
-            
+            </template>    
+
             </v-data-table-virtual>   
         </v-card-item>
 
