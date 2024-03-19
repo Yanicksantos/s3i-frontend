@@ -86,6 +86,7 @@
                     color="teal-darken-4" 
                     variant="flat"
                     class=" text-caption"
+                    to="/DM253/Banco/cadastrar"
                     >Cadastrar Local de Instalação</v-btn>
                 </v-card-item>
             </v-card>
