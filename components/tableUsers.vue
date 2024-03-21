@@ -60,14 +60,9 @@
 
         </v-card-item>
         
-        <v-card-item v-if="pending">
-            <v-progress-linear indeterminate 
-            absolute
-            bottom
-            ></v-progress-linear>
-        </v-card-item>
+   
 
-        <v-card-item v-else>
+        <v-card-item >
             <v-data-table-virtual
                 :headers="headers"
                 :items="usersi"
@@ -78,6 +73,7 @@
                 hover
                 fixed-header
                 class="text-caption"
+                :loading="pending"
         
             
             >

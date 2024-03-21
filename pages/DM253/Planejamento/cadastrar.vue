@@ -3,7 +3,7 @@
         <v-container>
         <v-form class="w-75 mx-auto">
             <v-card flat>
-        <v-btn prepend-icon="mdi-arrow-left-circle" to="/DM253" variant="plain" color="red-darken-4">Voltar</v-btn>
+        <v-btn prepend-icon="mdi-arrow-left-circle" to="/DM253" variant="plain" color="teal-darken-4">Voltar</v-btn>
   
         <h1 class="text-h5 mt-4 mb-10 font-weight-bold text-cyan-darken-4" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Planejamento da inspeção</h1>
 

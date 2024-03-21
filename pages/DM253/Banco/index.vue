@@ -1,7 +1,7 @@
 <template>
     <div class="pt-16">
         <v-container>
-          <v-btn prepend-icon="mdi-arrow-left-circle" to="/DM253" variant="plain" color="red-darken-4">Voltar</v-btn>
+          <v-btn prepend-icon="mdi-arrow-left-circle" to="/DM253" variant="plain" color="teal-darken-4">Voltar</v-btn>
             <v-form class="w-50 my-4 mx-auto d-flex">
                 <v-file-input
                 accept="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
@@ -35,6 +35,7 @@
                                 <v-btn 
                                size="small"  color="#1A237E" variant="text"   icon="mdi-refresh" class="ml-4"
                                 v-bind="props"
+                                @click="refresh"
                                 ></v-btn>
                             </template>
                         </v-tooltip>
@@ -44,7 +45,7 @@
                     <v-col cols="6">
                         <v-text-field
                         v-model="search"
-                        label="Filtar"
+                        label="Filtrar"
                         prepend-inner-icon="mdi-magnify"
                         variant="outlined"
                         hide-details
@@ -66,12 +67,29 @@
                 fixed-header
                 density="compact"
                 class="text-caption"
+                :loading="pending"
                 >
-                <template v-slot:item.codigo="{ item }" >
+              <!--  <template v-slot:item.codigo="{ item }" >
                     <v-text class="font-weight-black">{{item.codigo}}</v-text>
                 </template>
                 <template v-slot:item.tipoinstal="{ item }" >
-                    <v-chip  :text=item.tipoinstal  variant="tonal" :color="item.tipoinstal === 'Elétrico'? 'green-darken-4':'indigo-darken-4'"  size="small" ></v-chip>
+                    <v-chip  :text=item.tipoinstal  variant="text" :color="item.tipoinstal === 'Elétrico'? 'teal-darken-4':'indigo-darken-4'"  size="small" ></v-chip>
+                </template>-->
+
+                <template v-slot:item.tag="{ item }" >
+                    <v-text class="font-weight-black">{{item.tag}}</v-text>
+                </template>
+
+                <template v-slot:item.tipoEquipamento="{ item }" >
+                    <v-chip  :text="item.tipoEquipamento == 'M'? 'Mecânico':'Elétrico'"  variant="tonal" :color="item.tipoEquipamento === 'M'? 'black':'indigo-darken-4'"  size="small" ></v-chip>
+                </template>
+
+                <template v-slot:item.ativoInativo="{ item }" >
+                    <v-chip  :text="item.ativoInativo == 'A'? 'Ativo':'Inativo'"  variant="outlined" :color="item.ativoInativo === 'A'? 'green-accent-4':'red-accent-4'"  size="small" ></v-chip>
+                </template>
+
+                <template v-slot:item.dataRegistro="{ item }" >
+                    <v-text class="text-teal-darken-4">{{ formatarData(item.dataRegistro) }}</v-text>
                 </template>
 
                 <template v-slot:item.actions="{ item }" >
@@ -97,8 +115,8 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
-
+import { ref, computed, onMounted } from 'vue';
+import { format } from 'date-fns';
 definePageMeta({
   layout: 'dms',
 });
@@ -110,17 +128,48 @@ const search = ref('');
 const headers = [
   {
     align: 'start',
-    key: 'codigo',
+    key: 'tag',
     title: 'Código do Local',
   },
   { key: 'descricao', title: 'Descrição do Local' },
-  { key: 'classificacao', title: 'Classificação', align: 'center' },
+  { key: 'tipoEquipamento', title: 'Equipamento', align: 'center' },
   //{ key: 'details', title: 'Detalhes da Instalação' },
-  { key: 'tipoinstal', title: 'Tipo de Local', align: 'center' },
-  { key: 'tipoInsp', title: 'Tipo de Inspeção', align: 'center' },
+  { key: 'ativoInativo', title: 'Status', align: 'center' },
+  { key: 'dataRegistro', title: 'Data de Cadastro', align: 'center' },
+  //{ key: 'dataAtualizacao', title: 'Últ. Atualização', align: 'center' },
   { key: 'actions', title: '' },
 ];
-const desserts = [
+
+const desserts = ref([]);
+
+const filteredDesserts = computed(() => {
+  return desserts.filter(dessert =>
+    dessert.name.toLowerCase().includes(search.value.toLowerCase())
+  );
+});
+
+const formatarData = (data) => {
+        return format(new Date(data), 'dd-MM-yyyy hh:mm:ss a');
+  };
+
+const { data: dadosArvores, pending, refresh, error } = await useFetch("https://inspec.up.railway.app/api/ArvoreLogicas/GetArvoreLogicas?idCliente=1", {
+    method: "GET",
+    headers: {
+        "content-type": "application/json"
+    },
+    onResponse({ request, response, options }) {
+    // Process the response data
+    //localStorage.setItem('token', response._data.token)
+    desserts.value = response._data;
+  },
+}
+);
+  
+
+
+
+
+/*const desserts = [
   {
     codigo: 'BIA01-SOL-TOR-TOR02-VEN01-POS01',
     descricao: 'Sistema de ventilação de ar quente do torrador 01 (lado Triscafé)',
@@ -361,11 +410,9 @@ const desserts = [
     tipoinstal: 'Mecânico',
     tipoInsp: 'Sensitiva',
   }
-];
+];*/
+/*onMounted(() => {
+  fetchUsers();
+});*/
 
-const filteredDesserts = computed(() => {
-  return desserts.filter(dessert =>
-    dessert.name.toLowerCase().includes(search.value.toLowerCase())
-  );
-});
 </script>
